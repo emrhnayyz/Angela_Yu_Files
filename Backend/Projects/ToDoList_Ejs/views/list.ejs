@@ -1,12 +1,34 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>To Do List</title>
 </head>
+
 <body>
-    <h1><% KindOfDay %></h1>
+    <h1>
+        <%= kindOfDay %>
+    </h1>
+
+    <ul>
+        <li>Buy Food</li>
+        <li>Cook Food</li>
+        <li>Eat Food</li>
+        <% for( i=0; i < newListItems.length; i ++){ %>
+            <li>
+                <%= newListItems[i] %>
+            </li>
+            <% } %>
+
+
+                <form action="/" method="post">
+                    <input type="text" name="newItem" autocomplete="off">
+                    <button type="submit">Add</button>
+                </form>
+    </ul>
 
 </body>
+
 </html>
