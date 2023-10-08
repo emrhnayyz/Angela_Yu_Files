@@ -50,7 +50,7 @@ app.post("/put-secret", async (req, res) => {
     res.render("index.ejs", { content: JSON.stringify(error.response.data) });
   }
 });
-
+ 
 app.post("/patch-secret", async (req, res) => {
   const searchId = req.body.id;
   try {
