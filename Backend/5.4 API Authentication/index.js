@@ -3,9 +3,9 @@ import axios from "axios";
 
 const app = express();
 const port = 3000;
-const API_URL = "https://secrets-api.appbrewery.com/";
+const API_URL = "https://secrets-api.appbrewery.com";
 
-//TODO 1: Fill in your values for the 3 types of auth.
+// TODO: Replace the values below with your own before running this file.
 const yourUsername = "";
 const yourPassword = "";
 const yourAPIKey = "";
@@ -17,33 +17,28 @@ app.get("/", (req, res) => {
 
 app.get("/noAuth", async (req, res) => {
   try {
-    const result = await axios.get(API_URL + "/random")
-    res.render("index.ejs", { content: "API Response." })
+    const result = await axios.get(API_URL + "/random");
+    res.render("index.ejs", { content: JSON.stringify(result.data) });
   } catch (error) {
-    res.status(404).send(error.message)
+    res.status(404).send(error.message);
   }
-
 });
 
 app.get("/basicAuth", async (req, res) => {
   try {
-
     const result = await axios.get(
-      API_URL + "all?page=2",
+      API_URL + "/all?page=2",
       {},
       {
         auth: {
           username: yourUsername,
-          password: yourPassword
-        }
+          password: yourPassword,
+        },
       }
-
     );
-    res.render("index.ejs", { contenr: JSON.stringify(result.data) })
-
-
+    res.render("index.ejs", { content: JSON.stringify(result.data) });
   } catch (error) {
-    res.status(404).send(error.message)
+    res.status(404).send(error.message);
   }
 });
 
@@ -54,8 +49,6 @@ app.get("/apiKey", async (req, res) => {
         score: 5,
         apiKey: yourAPIKey,
       },
-
-
     });
     res.render("index.ejs", { content: JSON.stringify(result.data) });
   } catch (error) {
