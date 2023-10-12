@@ -26,7 +26,7 @@ app.get("/filter", (req, res) => {
   const filteredActivities = jokes.filter((joke) => joke.jokeType === type);
   res.json(filteredActivities);
 });
-
+ 
 // Post a new joke
 app.post("/jokes", (req, res) => {
   const newJoke = {
